@@ -21,5 +21,7 @@ OR:
 Right now we use chatgpt to fetch some data.  You'll need an api key.
 Create `envs.py` in the src folder with the following:
 ```
-chatGPT_API_Key = KEY_AS_STRING
+import os
+
+os.environ['chatGPT_API_Key'] = KEY_AS_STRING
 ```
