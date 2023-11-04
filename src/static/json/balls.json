@@ -15,7 +15,7 @@
       "examples": ["y=3x: the line's value increases by 3 for each x value, so the derivative is y=3", "The derivative helps find the tangent line (the line that just touches the curve) at a given point."]
     },
     {
-      "team": "Dot Product",
+      "term": "Dot Product",
       "code": "datapoint = [2, 4]\nunitVector = [.25, .75]\nsum = 0\nfor dimension in range(len(unitVector)):\n\tsum += datapoint[dimension] * unitVector[dimension]\nreturn sum",
       "definition": ["An algebraic operation that takes two equal-length sequences of numbers, and returns a single number."],
       "examples": ["Imagine you have two arrows (vectors) and you want to know how much they're pushing in the same direction", "Plotting of two dimensional data onto a single dimensional vector"]
