@@ -1,6 +1,7 @@
 import flask
 import json
 import os
+from flask_cors import CORS
 from gptInterface import gptDefines, gptCodes
 
 try:
@@ -9,6 +10,7 @@ except ImportError:
     pass
 
 app = flask.Flask(__name__)
+CORS(app)
 app.config.from_pyfile(os.path.join(os.getcwd(), "config.py"))
 openAI_key = app.config.get("chatGPT_API_Key")
 
