@@ -3,18 +3,21 @@
     {
       "term": "Integral (math term)",
       "code": "xxxx",
-      "definition": [1, 2, 3, 4, 5],
-      "graphics": ["/static/resources/integral/integralimg.png"]
+      "definition": ["Possessing everything essential; entire.", "A measurement of accumulated change"],
+      "graphics": ["/static/resources/integral/integralimg.png"],
+      "examples": ["It's like cutting a cake into infinitely thin slices, measuring each slice, and then adding them all up to get the whole cake."]
     },
     {
       "term": "Derivative (math term)",
       "code": "xxxx",
-      "definition": [1, 2],
-      "graphics": []
+      "definition": ["Instantaneous rate of change", "The rate of an increase of a function", "A description of the direction and speed of an object's motion, such as how an object accelerates or decelerates"],
+      "graphics": [],
+      "examples": ["y=3x: the line's value increases by 3 for each x value, so the derivative is y=3", "The derivative helps find the tangent line (the line that just touches the curve) at a given point."]
     },
     {
       "term": "Juxtaposition",
-      "definition": [1, 2, 3]
+      "definition": ["Putting two contrasting items next to each other to highlight how they're different, or similar things to emphasize their likeness.", "Placing two very different things side by side to make a point", "When you pair up two things in a way that makes you notice how they're opposite or alike, making a stronger point"],
+      "examples": ["Showing a hot cup of coffee next to a melting ice cream cone to highlight the difference in temperature"]
     }
   ]
 }
