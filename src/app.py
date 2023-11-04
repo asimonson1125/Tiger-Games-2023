@@ -1,9 +1,16 @@
 import flask
 import json
+import os
 from gptInterface import gptDefines, gptCodes
 
-app = flask.Flask(__name__)
+try:
+    __import__('envs.py')
+except ImportError:
+    pass
 
+app = flask.Flask(__name__)
+app.config.from_pyfile(os.path.join(os.getcwd(), "config.py"))
+openAI_key = app.config.get("chatGPT_API_Key")
 
 termfile = None
 try:

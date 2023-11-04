@@ -2,11 +2,6 @@ import openai
 import json
 from os import environ as env
 
-try:
-    __import__('envs.py')
-except ImportError:
-    pass
-
 openai.api_key = env.get('chatGPT_API_Key', '')
 
 def chat_with_gpt3(prompt):
