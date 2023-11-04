@@ -70,6 +70,14 @@ def combineCards(term):
     results = json.loads(definitions)
     results['code'] = code
     return results
-
+    
+def return_terms(array_of_search=reviewedTerms):
+    arr = []
+    for i in array_of_search:
+        arr.append((i['term']))
+    else:
+        # print(arr)
+        return arr
+        
 if __name__ == '__main__':
     app.run()
