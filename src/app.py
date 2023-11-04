@@ -19,6 +19,10 @@ except:
     termfile = open("./src/static/json/balls.json")
 reviewedTerms = json.load(termfile)['terms']
 
+termlist = []
+for i in reviewedTerms:
+    termlist.append((i['term']))
+
 @app.route('/')
 def home():
     return flask.render_template('index.html')
@@ -78,13 +82,9 @@ def combineCards(term):
     results['code'] = code
     return results
     
-def return_terms(array_of_search=reviewedTerms):
-    arr = []
-    for i in array_of_search:
-        arr.append((i['term']))
-    else:
-        # print(arr)
-        return arr
-        
+@app.route("/terms")
+def getTerms():
+    return termlist
+
 if __name__ == '__main__':
     app.run()
