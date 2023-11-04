@@ -19,17 +19,26 @@ def chat_with_gpt3(prompt):
 def gpt2objects(instring):
     return json.loads(instring)
 
+def gptCodes(term):
+    prompt = """
+Write pseudocode to implement the math term `{textIn}`.  Use the following example for summation and say nothing else:
+
+x = [2, 3, 5, 4]
+sum = 0
+for value in x:
+\tsum += value
+return sum
+""".replace("{textIn}", term)
+    return chat_with_gpt3(prompt)
+
 def gptDefines(term):
     prompt = """
-Write 5 definitions for the term `{textIn}` in layman's terms.  Use the following format and say nothing else:
+Write 5 definitions for the term `{textIn}` in layman's terms. Use the following format and say nothing else:
 ```
 {
 "definitions": ["first definition", "second definition", ... , "fifth definition"]
 }
 ```
-<2 definition goes here>
-...
-<5 definition goes here>
 """.replace("{textIn}", term)
     return chat_with_gpt3(prompt)
     # return chat_with_gpt3(prompt)

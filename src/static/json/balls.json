@@ -1,0 +1,20 @@
+{
+  "terms": [
+    {
+      "term": "Integral (math term)",
+      "code": "xxxx",
+      "definition": [1, 2, 3, 4, 5],
+      "graphics": ["/static/resources/integral/integralimg.png"]
+    },
+    {
+      "term": "Derivative (math term)",
+      "code": "xxxx",
+      "definition": [1, 2],
+      "graphics": []
+    },
+    {
+      "term": "Juxtaposition",
+      "definition": [1, 2, 3]
+    }
+  ]
+}
