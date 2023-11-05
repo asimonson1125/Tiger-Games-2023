@@ -1,0 +1,51 @@
+/* Home.module.css */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.bigLogo {
+    opacity: 0;
+    /* Set initial opacity to 0 */
+    animation: fadeIn 2s ease-out forwards;
+}
+
+/* Home.module.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* This stacks children vertically */
+    height: 100vh;
+    /* This ensures that the container takes the full viewport height */
+}
+
+.bigLogo {
+    /* Your styles for bigLogo */
+    margin-bottom: 20px;
+    /* Add some space below the logo */
+}
+
+.button {
+    background-color: rgb(147, 106, 252);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /* Rest of your button styling */
+}
+
+.button:hover {
+    background-color: rgb(132, 95, 227);
+    /* Darker color on hover */
+}
