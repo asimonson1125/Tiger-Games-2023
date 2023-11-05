@@ -67,6 +67,7 @@ def getAll():
     if term == None:
         return "No term!", 400
     results = combineCards(term)
+    results['term'] = term
     return json.dumps(results)
 
 @app.route("/reviewed/<termID>")
