@@ -85,7 +85,16 @@ def combineCards(term):
     results['code'] = code
     return results
 
-def genVid(term, codeblock, latex):
+@app.route("/getVideo", methods=["POST"])
+def genVid():
+    term, codeblock, latex = None
+    dat = json.loads(flask.request.data)
+    try:
+        term = dat['term']
+        codeblock = dat['code']
+        latex = dat['latex']
+    except:
+        return "No term!", 400
     pyScript = open("./manimFace.py").read().replace("{codeIn}", codeblock).replace("{latexIn}", latex).replace("{termIN}", term)
     f = open(f"./{term}.py", "w")
     f.write(pyScript)
@@ -93,20 +102,12 @@ def genVid(term, codeblock, latex):
     # manim manimFace.py OpeningManim -p -ql -o scene1.mp4
     print(f"./{term}.py")
     result = subprocess.run(f"manim ./{term}.py OpeningManim -i -q l -o {term}.gif".split(" "))
-    print("result: ", result)
+    flask.send_file(f"./media/videos/{term}/480p15/{term}.gif")
     # print("done!")
     # os.remove(f"./{term}.py")
     # return "/media/videos/Summation/480p15/Summation.mp4"
 
-codeblock = """
-x = [2, 3, 5, 4]
-sum = 0
-for value in x:
-\tsum += value
-return sum
-"""
-latex = r"\sum_{i = 1}^{n} i"
-genVid("Summation", codeblock, latex)
+# genVid("Summation", codeblock, latex)
     
 @app.route("/terms")
 def getTerms():

@@ -6,7 +6,7 @@ openai.api_key = env.get('chatGPT_API_Key', '')
 
 def chat_with_gpt3(prompt):
     response = openai.Completion.create(
-        engine='text-davinci-002',  # Choose the ChatGPT model you prefer
+        engine='gpt-3.5-turbo-instruct',  # Choose the ChatGPT model you prefer
         prompt=prompt,
         max_tokens=500,  # Set the maximum length of the response
         temperature=0,  # Controls the randomness of the response
@@ -21,7 +21,7 @@ def gpt2objects(instring):
 
 def gptCodes(term):
     prompt = """
-If the word is a math term, Write pseudocode to implement the math term `{textIn}`.  Use the following example for summation and say nothing else:
+If the following term is a math term, Write pseudocode to implement it, but say nothing else.  The term is: `{textIn}`.  Use the following example for summation:
 
 x = [2, 3, 5, 4]
 sum = 0
@@ -29,7 +29,6 @@ for value in x:
 \tsum += value
 return sum.
 
-But if it is not, and if yoiu can, build some code to show the following term `{textIn}` represented via code, the best you can, and don't use inputs. Give me a code program!
 """.replace("{textIn}", term)
     return chat_with_gpt3(prompt)
 
