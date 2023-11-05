@@ -5,29 +5,31 @@ import Image from 'next/image';
 
 export default function Search() {
     // State to store the input value
+    // const [searchTerm, setSearchTerm] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
-    const [terms, setTerms] = useState([]);
+    // const [fetchedData, setFetchedData] = useState(null);
+    const [fetchedData, setFetchedData] = useState([]);
 
 
-    // Function to handle the button click and make the GET request
     const handleSearchClick = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:5000/reviewed/');
+            const response = await fetch('http://127.0.0.1:5000/reviewed/all');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            // Ensure that data.terms is an array before setting the state
-            console.log(data)
-            if (Array.isArray(data.terms)) {
-                setTerms(data.terms);
-            } else {
-                throw new Error('Data is not in expected format: no terms array');
-            }
+
+            // Filter the data based on the searchTerm
+            const filteredData = data.filter(item =>
+                item.term.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+
+            setFetchedData(filteredData);
         } catch (error) {
             console.error('There was an error!', error);
         }
     };
+
 
 
 
@@ -36,6 +38,16 @@ export default function Search() {
         <>
             {/* Navigation Bar */}
             <div className={styles.navbar}>
+                {/* Image Component from Next.js to include a logo */}
+                <div className={styles.navItem}>
+                    <Image
+                        src="/logo.png" // Path to your image file
+                        alt="Company Logo" // Alt text for the image
+                        width={200} // Desired width
+                        height={75} // Desired height
+                    // Optional properties like layout could be added here
+                    />
+                </div>
                 <div className={styles.navItem}>Home</div>
                 <div className={styles.navItem}>About</div>
                 <div className={styles.navItem}>Contact</div>
@@ -46,47 +58,50 @@ export default function Search() {
                     <title>Search Page</title>
                 </Head>
 
-                <main className={styles.main}>
-                    <div className={styles.searchBar}>
-                        <input
-                            type="text"
-                            placeholder="Enter your search term"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        {/* Attach the handleSearchClick function to the onClick event */}
-                        <button type="button" onClick={handleSearchClick}>🔍</button>
+                <div className={styles.searchContainer}>
+                    <div className={styles.searchContainer}>
+                        <div className={styles.searchBar}>
+                            <input
+                                type="text"
+                                placeholder="Enter your search term"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <button type="button" onClick={handleSearchClick}>🔍</button>
+                        </div>
                     </div>
+                </div>
 
-                    <div className={styles.termsContainer}>
-                        {terms && terms.length > 0 && terms.map((term, index) => (
-                            <div key={index} className={styles.termItem}>
-                                <h3 className={styles.termTitle}>{term.term}</h3>
-                                <div>
-                                    <strong>Code:</strong> {term.code || 'N/A'}
-                                </div>
+                <main className={`${styles.main} ${styles.centeredContainer}`}>
+                    {/* Flashcards and its contents */}
+                    {/* Cards Container */}
+                    <div className={styles.flashcards}>
+                        {fetchedData && fetchedData.map((item, index) => (
+                            <div key={index} className={styles.card}>
+                                <h3 className={styles.termTitle}>{item.term}</h3>
+                                <p><strong>Code:</strong> {item.code}</p>
                                 <div>
                                     <strong>Definitions:</strong>
-                                    <ul>
-                                        {term.definition.map((definition, idx) => (
-                                            <li key={idx}>{definition}</li>
+                                    <ul className={styles.definitionsList}> {/* Apply class here */}
+                                        {item.definition.map((def, defIndex) => (
+                                            <li key={defIndex}>{def}</li>
                                         ))}
                                     </ul>
                                 </div>
-                                {term.graphics.length > 0 && (
+                                {item.graphics && item.graphics.length > 0 && (
                                     <div>
                                         <strong>Graphics:</strong>
-                                        {term.graphics.map((graphic, imgIdx) => (
+                                        {item.graphics.map((graphic, imgIdx) => (
                                             <div key={imgIdx} className={styles.graphic}>
-                                                <Image src={graphic} alt={`${term.term} graphic`} width={100} height={100} />
+                                                <Image src={graphic} alt={`${item.term} graphic`} width={100} height={100} />
                                             </div>
                                         ))}
                                     </div>
                                 )}
                                 <div>
                                     <strong>Examples:</strong>
-                                    <ul>
-                                        {term.examples.map((example, exIdx) => (
+                                    <ul className={styles.examplesList}> {/* Apply class here */}
+                                        {item.examples.map((example, exIdx) => (
                                             <li key={exIdx}>{example}</li>
                                         ))}
                                     </ul>

@@ -2,19 +2,21 @@
 .navbar {
     display: flex;
     justify-content: space-around;
-    /* This will space out your nav items evenly */
-    background-color: #FFE70D;
-    /* Change the color to suit your design */
+    align-items: center;
+    /* This will vertically center your nav items */
+    background-color: rgb(147, 106, 252);
     color: #f7f7f7;
-    padding: 1rem 0;
+    /* padding: 1rem 0;s */
     width: 100%;
 }
 
 .navItem {
+    display: flex;
+    align-items: center;
+    /* This will center the content of navItem vertically */
+    justify-content: center;
+    /* This will center the content of navItem horizontally */
     cursor: pointer;
-    /* Makes it clear the items are clickable */
-    padding: 0 2rem;
-    /* Gives some horizontal spacing */
 }
 
 /* ... other styles for the page ... */
@@ -25,40 +27,38 @@
     background: #f7f7f7;
 }
 
-.main {
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .searchBar {
     display: flex;
-    margin-bottom: 1rem;
+    border: #ccc 1px solid;
 }
 
 .searchBar input {
     flex: 1;
     padding: 0.5rem;
+
 }
 
 .searchBar button {
     padding: 0.5rem;
 }
 
-.accordion {
-    /* Additional styles for accordion */
-}
-
-.accordionItem {
-    /* Styles for each accordion item */
+.searchContainer {
+    /* Thin grey border */
     margin-bottom: 1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    /* Space below the search bar */
 }
 
-.accordionTitle {
-    /* Styles for the accordion title */
-    font-weight: bold;
+/* src/styles/Search.module.css */
+.centeredContainer {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .textarea {
@@ -68,3 +68,67 @@
     margin-bottom: 1rem;
     /* Add any other styles for textarea */
 }
+
+.card {
+    border: 1px solid #ccc;
+    /* Light grey border */
+    padding: 20px;
+    margin: 0px 20px 2rem 20px;
+    border-radius: 8px;
+    /* Slightly rounded corners for the card */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* A subtle shadow */
+    background: white;
+    /* White background */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Align items to the start of the card */
+}
+
+.termTitle {
+    font-size: 1.5em;
+    color: #333;
+    /* Darker text for the title */
+    margin-bottom: 10px;
+}
+
+.definition,
+.examples,
+.graphic {
+    margin-bottom: 10px;
+    /* Space between sections */
+}
+
+/* Search.module.css */
+
+/* Add styles to ensure list items display with bullet points */
+.definitionsList,
+.examplesList {
+    list-style-type: disc;
+    /* This ensures you see the bullet points */
+    padding-left: 1em;
+    /* Adjust as needed to align with your design */
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.graphicContainer {
+    display: flex;
+    justify-content: center;
+    /* Center graphics */
+    align-items: center;
+    width: 100%;
+    /* Full width of the card */
+    margin-top: 10px;
+}
+
+.graphicImage {
+    max-width: 100%;
+    /* Make sure the image does not overflow the card */
+    height: auto;
+    border-radius: 4px;
+    /* Slightly rounded corners for images */
+}
+
+/* ... other styles ... */

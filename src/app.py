@@ -75,7 +75,7 @@ def getReviewed(termID):
         termID = int(termID)
         return json.dumps(reviewedTerms[termID])
     except:
-            return "Invalid ID!", 404
+            return json.dumps(reviewedTerms)
 
 def combineCards(term):
     code = gptCodes(term)
