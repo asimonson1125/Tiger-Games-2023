@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100vh;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+}
+
+.circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000;
+    opacity: 0.8;
+    border-radius: 50%;
+    animation-name: zoomout;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+$particles: 100;
+$purple-start: 240; // Start of purple hue
+$purple-end: 300; // End of purple hue
+
+@for $i from 1 through $particles {
+    .circle:nth-child(#{$i}) {
+        $wh: random(40) + px;
+        animation-delay: -$i * 0.3s;
+        $hue: random($purple-end - $purple-start) + $purple-start; // Generates a hue within the purple range
+        background-color: hsl($hue, 50%, random(50) + 25%);
+        width: $wh;
+        height: $wh;
+        transform: translate3d((random() * 1000 - 500 + 1px), (random() * 1000 - 500 + 1px), (random(1000) * 1px));
+    }
+}
+
+@keyframes zoomout {
+    100% {
+        transform: translate3d(0, 0, -2000px);
+        opacity: 0;
+    }
+}

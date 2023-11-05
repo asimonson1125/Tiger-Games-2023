@@ -2,7 +2,7 @@
   "terms": [
     {
       "term": "Integral (math term)",
-      "code": "xxxx",
+      "code": "public static double calculateDerivative(double[] coefficients, double x) {int degree = coefficients.length - 1; double derivative = 0;for (int i = 0; i < degree; i++) {derivative += (degree - i) * coefficients[i] * Math.pow(x, degree - i - 1);}return derivative;}",
       "definition": [
         "Possessing everything essential; entire.",
         "A measurement of accumulated change"

@@ -59,7 +59,7 @@ export default function Search() {
             <div className={styles.navbar}>
                 <div className={styles.logoContainer}>
                     <Link href="/" passHref>
-                        <Image src="/logo.png" alt="Company Logo" width={200} height={75} style={{ cursor: 'pointer' }} />
+                        <Image src="/logo_white.png" alt="Company Logo" width={250} height={100} style={{ cursor: 'pointer' }} />
                     </Link>
                 </div>
                 <div className={styles.navItems}>

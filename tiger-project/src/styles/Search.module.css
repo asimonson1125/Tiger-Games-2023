@@ -1,5 +1,5 @@
 .body {
-    background: linear-gradient(rgb(147, 106, 252), rgb(197, 156, 252));
+    background: linear-gradient(rgb(158, 120, 253), rgb(206, 172, 250));
     min-height: 100vh;
     /* Set the minimum height to fill the screen */
     display: flex;
