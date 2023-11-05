@@ -1,8 +1,21 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../styles/Search.module.css'; // Assume you have a CSS module with your styles
 import Image from 'next/image';
 import Link from 'next/link';
+
+
+import Prism from "prismjs";
+const CodeBlock = ({ code, language }) => {
+    useEffect(() => {
+      Prism.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code children={code} className={`language-${language}`} />
+      </pre>
+    );
+  };
 
 export default function Search() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -55,6 +68,8 @@ export default function Search() {
     return (
 
         <div className={styles.body}>
+            {/* <script src="/prism.js"></script>
+            <link rel="stylesheet" type="text/css" href="/prism.css"></link> */}
             {/* Navigation Bar */}
             <div className={styles.navbar}>
                 <div className={styles.logoContainer}>
@@ -85,6 +100,7 @@ export default function Search() {
                             placeholder="Enter your search term"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
+                            onKeyPress={(e) => {if (e.key == "Enter") handleSearchClick()}}
                         />
                         <button type="button" onClick={handleSearchClick}>🔍</button>
                     </div>
@@ -140,7 +156,12 @@ export default function Search() {
                                     <div>
                                         <strong>Code:</strong>
                                         <ul>
-                                            {item.code}
+                                            <CodeBlock code={item.code} language={"python"}></CodeBlock>
+                                            {/* <pre>
+                                                <code className="language-python">
+                                                    {item.code}
+                                                </code>
+                                            </pre> */}
                                         </ul>
                                     </div>
                                 </div>

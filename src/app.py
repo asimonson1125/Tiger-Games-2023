@@ -106,7 +106,7 @@ for value in x:
 return sum
 """
 latex = r"\sum_{i = 1}^{n} i"
-genVid("Summation", codeblock, latex)
+# genVid("Summation", codeblock, latex)
     
 @app.route("/terms")
 def getTerms():
