@@ -91,6 +91,7 @@ def genVid(term, codeblock, latex):
     f.write(pyScript)
     f.close()
     # manim manimFace.py OpeningManim -p -ql -o scene1.mp4
+    print(f"./{term}.py")
     result = subprocess.run(f"manim ./{term}.py OpeningManim -i -q l -o {term}.gif".split(" "))
     print("result: ", result)
     # print("done!")

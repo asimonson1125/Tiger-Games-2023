@@ -3,27 +3,54 @@
     {
       "term": "Integral (math term)",
       "code": "xxxx",
-      "definition": ["Possessing everything essential; entire.", "A measurement of accumulated change"],
-      "graphics": ["/static/resources/integral/integralimg.png"],
-      "examples": ["It's like cutting a cake into infinitely thin slices, measuring each slice, and then adding them all up to get the whole cake."]
+      "definition": [
+        "Possessing everything essential; entire.",
+        "A measurement of accumulated change"
+      ],
+      "graphics": [
+        "/resources/integral/Integral.mp4"
+      ],
+      "examples": [
+        "It's like cutting a cake into infinitely thin slices, measuring each slice, and then adding them all up to get the whole cake."
+      ]
     },
     {
       "term": "Derivative (math term)",
       "code": "xxxx",
-      "definition": ["Instantaneous rate of change", "The rate of an increase of a function", "A description of the direction and speed of an object's motion, such as how an object accelerates or decelerates"],
-      "graphics": [],
-      "examples": ["y=3x: the line's value increases by 3 for each x value, so the derivative is y=3", "The derivative helps find the tangent line (the line that just touches the curve) at a given point."]
+      "definition": [
+        "Instantaneous rate of change",
+        "The rate of an increase of a function",
+        "A description of the direction and speed of an object's motion, such as how an object accelerates or decelerates"
+      ],
+      "graphics": [
+        "/resources/derivatives/derivative.mp4"
+      ],
+      "examples": [
+        "y=3x: the line's value increases by 3 for each x value, so the derivative is y=3",
+        "The derivative helps find the tangent line (the line that just touches the curve) at a given point."
+      ]
     },
     {
       "term": "Dot Product",
       "code": "datapoint = [2, 4]\nunitVector = [.25, .75]\nsum = 0\nfor dimension in range(len(unitVector)):\n\tsum += datapoint[dimension] * unitVector[dimension]\nreturn sum",
-      "definition": ["An algebraic operation that takes two equal-length sequences of numbers, and returns a single number."],
-      "examples": ["Imagine you have two arrows (vectors) and you want to know how much they're pushing in the same direction", "Plotting of two dimensional data onto a single dimensional vector"]
+      "definition": [
+        "An algebraic operation that takes two equal-length sequences of numbers, and returns a single number."
+      ],
+      "examples": [
+        "Imagine you have two arrows (vectors) and you want to know how much they're pushing in the same direction",
+        "Plotting of two dimensional data onto a single dimensional vector"
+      ]
     },
     {
       "term": "Juxtaposition",
-      "definition": ["Putting two contrasting items next to each other to highlight how they're different, or similar things to emphasize their likeness.", "Placing two very different things side by side to make a point", "When you pair up two things in a way that makes you notice how they're opposite or alike, making a stronger point"],
-      "examples": ["Showing a hot cup of coffee next to a melting ice cream cone to highlight the difference in temperature"]
+      "definition": [
+        "Putting two contrasting items next to each other to highlight how they're different, or similar things to emphasize their likeness.",
+        "Placing two very different things side by side to make a point",
+        "When you pair up two things in a way that makes you notice how they're opposite or alike, making a stronger point"
+      ],
+      "examples": [
+        "Showing a hot cup of coffee next to a melting ice cream cone to highlight the difference in temperature"
+      ]
     }
   ]
 }
