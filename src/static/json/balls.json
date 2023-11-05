@@ -2,7 +2,7 @@
   "terms": [
     {
       "term": "Integral (math term)",
-      "code": "xxxx",
+      "code": "\n# f is the function to be integrated\n# a and b are the limits of integration\n# n is the number of subintervals\nfunction integrate(f, a, b, n):\n\tstep_size = (b - a) / n  # Calculate the width of each subinterval\n\tresult = 0  # Initialize the result to zero\n\n\tfor i from 0 to n:\n\t\t# Calculate the left and right endpoints of the current subinterval\n\t\tx0 = a + i * step_size\n\t\tx1 = a + (i + 1) * step_size\n\n\t\t# Calculate the area of the trapezoid and add it to the result\n\t\tresult = result + 0.5 * (f(x0) + f(x1)) * (x1 - x0)\n\treturn result",
       "definition": [
         "Possessing everything essential; entire.",
         "A measurement of accumulated change"
@@ -16,7 +16,7 @@
     },
     {
       "term": "Derivative (math term)",
-      "code": "xxxx",
+      "code": "function calculate_derivative(coefficients):\n\t// Initialize an empty list for the derivative coefficients\n\tderivative_coefficients = []\n\n\t// Iterate through the coefficients of the polynomial in reverse order\n\tfor i from len(coefficients) - 1 to 1:\n\t\t// Calculate the derivative coefficient for the current term\n\t\tderivative_coefficient = i * coefficients[i]\n\n\t\t// Append the derivative coefficient to the result\n\t\tderivative_coefficients.append(derivative_coefficient)\n\n\t// Return the list of derivative coefficients\n\treturn derivative_coefficients",
       "definition": [
         "Instantaneous rate of change",
         "The rate of an increase of a function",
