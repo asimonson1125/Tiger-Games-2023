@@ -1,45 +1,67 @@
+.body {
+    background: linear-gradient(rgb(147, 106, 252), rgb(197, 156, 252));
+    min-height: 100vh;
+    /* Set the minimum height to fill the screen */
+    display: flex;
+    flex-direction: column;
+    /* This will organize your content in a column */
+}
+
 /* src/styles/Search.module.css */
 .navbar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    /* This will vertically center your nav items */
     background-color: rgb(147, 106, 252);
     color: #f7f7f7;
-    /* padding: 1rem 0;s */
     width: 100%;
+    position: sticky;
+    /* Make navbar sticky */
+    top: 0;
+    /* Stick to the top of the viewport */
+    z-index: 1000;
+    /* Ensure the navbar stays above other content */
+}
+
+.navItem:not(:last-child) {
+    margin-right: 1rem;
+    /* Margin is added only between items, not after the last item */
+}
+
+
+/* src/styles/Search.module.css */
+.navItems {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    /* Adjust the space between each nav item */
 }
 
 .navItem {
-    display: flex;
-    align-items: center;
-    /* This will center the content of navItem vertically */
-    justify-content: center;
-    /* This will center the content of navItem horizontally */
-    cursor: pointer;
+    margin-right: 1rem;
+    /* Adjust the right margin for each nav link */
 }
-
-/* ... other styles for the page ... */
-
 
 .container {
     padding: 2rem;
-    background: #f7f7f7;
 }
 
 .searchBar {
     display: flex;
-    border: #ccc 1px solid;
+    border: #908787 1px solid;
 }
 
 .searchBar input {
     flex: 1;
-    padding: 0.5rem;
-
+    padding: 0rem 1.5rem 0rem 1.5rem;
+    border-radius: 20px 0px 0px 20px;
 }
 
 .searchBar button {
     padding: 0.5rem;
+    background-color: white;
+    border-radius: 0px 20px 20px 0px;
 }
 
 .searchContainer {
@@ -58,15 +80,8 @@
     margin-right: auto;
     background: white;
     padding: 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.textarea {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    /* Add any other styles for textarea */
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .card {
@@ -114,6 +129,7 @@
 }
 
 .graphicContainer {
+    position: relative;
     display: flex;
     justify-content: center;
     /* Center graphics */
@@ -121,6 +137,7 @@
     width: 100%;
     /* Full width of the card */
     margin-top: 10px;
+
 }
 
 .graphicImage {
@@ -131,4 +148,10 @@
     /* Slightly rounded corners for images */
 }
 
-/* ... other styles ... */
+.graphicVideo {
+    max-width: 100%;
+    /* Video will take up to 100% of its parent's width */
+    height: auto;
+    /* Height will adjust automatically */
+    /* You may want to set a max-height as well depending on your design */
+}

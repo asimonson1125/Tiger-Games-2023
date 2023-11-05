@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import styles from '../styles/Search.module.css'; // Assume you have a CSS module with your styles
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Search() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -39,7 +40,7 @@ export default function Search() {
                     body: JSON.stringify(postData)
                 });
                 let end = await postResponse.json()
-                console.log(end)
+                // console.log(end)
                 setAdditionalData(end); // Set the end data to additionalData state
             }
         } catch (error) {
@@ -53,23 +54,24 @@ export default function Search() {
 
     return (
 
-        <>
+        <div className={styles.body}>
             {/* Navigation Bar */}
             <div className={styles.navbar}>
-                {/* Image Component from Next.js to include a logo */}
-                <div className={styles.navItem}>
-                    <Image
-                        src="/logo.png" // Path to your image file
-                        alt="Company Logo" // Alt text for the image
-                        width={200} // Desired width
-                        height={75} // Desired height
-                    // Optional properties like layout could be added here
-                    />
+                <div className={styles.logoContainer}>
+                    <Link href="/" passHref>
+                        <Image src="/logo.png" alt="Company Logo" width={200} height={75} style={{ cursor: 'pointer' }} />
+                    </Link>
                 </div>
-                <div className={styles.navItem}>Home</div>
-                <div className={styles.navItem}>About</div>
-                <div className={styles.navItem}>Contact</div>
+                <div className={styles.navItems}>
+                    <Link href="/" passHref className={styles.navItem}>Home</Link>
+                    <Link href="/about" passHref className={styles.navItem}>About</Link>
+                    <Link href="/contact" passHref className={styles.navItem}>Contact</Link>
+                </div>
             </div>
+
+
+
+
 
             <div className={styles.container}>
                 <Head>
@@ -77,80 +79,92 @@ export default function Search() {
                 </Head>
 
                 <div className={styles.searchContainer}>
-                    <div className={styles.searchContainer}>
-                        <div className={styles.searchBar}>
-                            <input
-                                type="text"
-                                placeholder="Enter your search term"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
-                            <button type="button" onClick={handleSearchClick}>🔍</button>
-                        </div>
+                    <div className={styles.searchBar}>
+                        <input
+                            type="text"
+                            placeholder="Enter your search term"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                        <button type="button" onClick={handleSearchClick}>🔍</button>
                     </div>
                 </div>
 
-                <main className={`${styles.main} ${styles.centeredContainer}`}>
-                    {/* Flashcards and its contents */}
-                    {/* Cards Container */}
-                    <div className={styles.flashcards}>
-                        {fetchedData.map((item, index) => (
-                            <div key={index} className={styles.card}>
-                                <h3 className={styles.termTitle}>{item.term}</h3>
-                                <div>
-                                    <strong>Definitions:</strong>
-                                    <ul className={styles.definitionsList}>
-                                        {item.definition.map((def, defIndex) => (
-                                            <li key={defIndex}>{def}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                {item.graphics && item.graphics.length > 0 && (
+                {(fetchedData.length > 0 || additionalData) && (
+                    <main className={`${styles.main} ${styles.centeredContainer}`}>
+                        {/* Flashcards and its contents */}
+                        {/* Cards Container */}
+                        <div className={styles.flashcards}>
+                            {fetchedData.map((item, index) => (
+                                <div key={index} className={styles.card}>
+                                    <h3 className={styles.termTitle}>{item.term}</h3>
                                     <div>
-                                        <strong>Graphics:</strong>
-                                        {item.graphics.map((graphic, imgIdx) => (
-                                            <div key={imgIdx} className={styles.graphic}>
-                                                <Image src={graphic} alt={`${item.term} graphic`} width={100} height={100} />
-                                            </div>
-                                        ))}
+                                        <strong>Definitions:</strong>
+                                        <ul className={styles.definitionsList}>
+                                            {item.definition.map((def, defIndex) => (
+                                                <li key={defIndex}>{def}</li>
+                                            ))}
+                                        </ul>
                                     </div>
-                                )}
-                                <div>
-                                    <strong>Examples:</strong>
-                                    <ul className={styles.examplesList}> {/* Apply class here */}
-                                        {item.examples.map((example, exIdx) => (
-                                            <li key={exIdx}>{example}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div>
-                                    <strong>Code:</strong>
-                                    <ul>
-                                        {item.code}
-                                    </ul>
-                                </div>
-                            </div>
-                        ))}
-                        {/* Conditionally render the card for additionalData */}
-                        {additionalData && (
-                            <div className={styles.card}>
-                                <h3 className={styles.termTitle}>{additionalData.term}</h3>
-                                <div>
-                                    <strong>Definitions:</strong>
-                                    <ul className={styles.definitionsList}>
-                                        {additionalData.definitions.map((def, defIndex) => (
-                                            <li key={defIndex}>{def}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div><strong>Code:</strong>
-                                    <ul className={styles.definitionsList}>
-                                        {additionalData.code}
-                                    </ul>
+                                    {item.graphics && item.graphics.length > 0 && (
+                                        <div>
+                                            <strong>Graphics:</strong>
+                                            {item.graphics.map((graphic, imgIdx) => (
+                                                <div key={imgIdx} className={styles.graphicContainer}>
+                                                    {/* Use video tag for mp4 files */}
+                                                    <video
+                                                        className={styles.graphicVideo}
+                                                        autoPlay
+                                                        loop
+                                                        muted
+                                                        controls
+                                                        onError={(e) => console.error('Error loading video:', e)}
+                                                    >
+                                                        <source src={graphic} type="video/mp4" />
+                                                        Your browser does not support the video tag.
+                                                    </video>
 
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    <div>
+                                        <strong>Examples:</strong>
+                                        <ul className={styles.examplesList}> {/* Apply class here */}
+                                            {item.examples.map((example, exIdx) => (
+                                                <li key={exIdx}>{example}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <strong>Code:</strong>
+                                        <ul>
+                                            {item.code}
+                                        </ul>
+                                    </div>
                                 </div>
-                                {/* Assuming additionalData also has graphics and examples */}
-                                {/* {additionalData.graphics && additionalData.graphics.length > 0 && (
+                            ))}
+                            {/* Conditionally render the card for additionalData */}
+                            {additionalData && (
+                                <div className={styles.card}>
+                                    <h3 className={styles.termTitle}>{additionalData.term}</h3>
+                                    <div>
+                                        <strong>Definitions:</strong>
+                                        <ul className={styles.definitionsList}>
+                                            {additionalData.definitions.map((def, defIndex) => (
+                                                <li key={defIndex}>{def}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div><strong>Code:</strong>
+                                        <ul className={styles.definitionsList}>
+                                            {additionalData.code}
+                                        </ul>
+
+                                    </div>
+                                    {/* Assuming additionalData also has graphics and examples */}
+                                    {/* {additionalData.graphics && additionalData.graphics.length > 0 && (
                                     <div>
                                         <strong>Graphics:</strong>
                                         {additionalData.graphics.map((graphic, imgIdx) => (
@@ -168,13 +182,14 @@ export default function Search() {
                                         ))}
                                     </ul>
                                 </div> */}
-                            </div>
-                        )}
+                                </div>
+                            )}
 
-                    </div>
+                        </div>
 
-                </main>
+                    </main>
+                )}
             </div>
-        </>
+        </div>
     );
 }
