@@ -1,25 +1,35 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import styles from '../styles/Search.module.css'; // Assume you have a CSS module with your styles
+import Image from 'next/image';
 
 export default function Search() {
     // State to store the input value
     const [searchTerm, setSearchTerm] = useState('');
+    const [terms, setTerms] = useState([]);
+
 
     // Function to handle the button click and make the GET request
     const handleSearchClick = async () => {
         try {
-            const response = await fetch('http://localhost:5000/reviewed/0');
+            const response = await fetch('http://127.0.0.1:5000/reviewed/');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            console.log(data); // Printing the result in the console
-            // You can also set the data to state and display it in the component if needed
+            // Ensure that data.terms is an array before setting the state
+            console.log(data)
+            if (Array.isArray(data.terms)) {
+                setTerms(data.terms);
+            } else {
+                throw new Error('Data is not in expected format: no terms array');
+            }
         } catch (error) {
             console.error('There was an error!', error);
         }
     };
+
+
 
     return (
 
@@ -48,19 +58,43 @@ export default function Search() {
                         <button type="button" onClick={handleSearchClick}>🔍</button>
                     </div>
 
-                    <div className={styles.accordion}>
-                        <div className={styles.accordionItem}>
-                            <div className={styles.accordionTitle}>English</div>
-                            <textarea placeholder="Definition"></textarea>
-                            <textarea placeholder="Example"></textarea>
-                        </div>
-
-                        <div className={styles.accordionItem}>
-                            <div className={styles.accordionTitle}>Math</div>
-                            <textarea placeholder="Definition"></textarea>
-                            <textarea placeholder="Example"></textarea>
-                        </div>
+                    <div className={styles.termsContainer}>
+                        {terms && terms.length > 0 && terms.map((term, index) => (
+                            <div key={index} className={styles.termItem}>
+                                <h3 className={styles.termTitle}>{term.term}</h3>
+                                <div>
+                                    <strong>Code:</strong> {term.code || 'N/A'}
+                                </div>
+                                <div>
+                                    <strong>Definitions:</strong>
+                                    <ul>
+                                        {term.definition.map((definition, idx) => (
+                                            <li key={idx}>{definition}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                {term.graphics.length > 0 && (
+                                    <div>
+                                        <strong>Graphics:</strong>
+                                        {term.graphics.map((graphic, imgIdx) => (
+                                            <div key={imgIdx} className={styles.graphic}>
+                                                <Image src={graphic} alt={`${term.term} graphic`} width={100} height={100} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                                <div>
+                                    <strong>Examples:</strong>
+                                    <ul>
+                                        {term.examples.map((example, exIdx) => (
+                                            <li key={exIdx}>{example}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        ))}
                     </div>
+
                 </main>
             </div>
         </>
