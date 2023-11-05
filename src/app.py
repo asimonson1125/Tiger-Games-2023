@@ -1,13 +1,12 @@
 import flask
 import json
 import os
-from flask_cors import CORS
-from gptInterface import gptDefines, gptCodes
-
 try:
     __import__('envs.py')
 except ImportError:
     pass
+from flask_cors import CORS
+from gptInterface import gptDefines, gptCodes
 
 app = flask.Flask(__name__)
 CORS(app)
