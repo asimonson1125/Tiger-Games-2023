@@ -1,3 +1,7 @@
 envs.py
 __pycache__
 .venv
+media
+test.py
+tmp.py
+latexMath.py
